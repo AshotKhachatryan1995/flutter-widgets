@@ -6964,7 +6964,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
           ),
         ),
       ),
-      Positioned(top: top + height / 2, left: 0, right: 0, child: Divider()),
+      Positioned(top: top + height, left: 0, right: 0, child: Divider()),
       _getActionsButton(top + height, actionButtonsHeight)
     ]);
   }
@@ -8149,8 +8149,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
         hoverColor: prevArrowColor != arrowColor ? Colors.transparent : null,
         highlightColor:
             prevArrowColor != arrowColor ? Colors.transparent : null,
-        color: widget.headerStyle.backgroundColor ??
-            widget.datePickerTheme.headerBackgroundColor,
+        color: Colors.black,
         onPressed: widget.previousNavigationCallback,
         padding: EdgeInsets.zero,
         elevation: 0,
