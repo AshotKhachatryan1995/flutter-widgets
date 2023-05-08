@@ -6997,7 +6997,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                       removeTop: true,
                       removeBottom: true,
                       context: context,
-                      TextButton(
+                      child: TextButton(
                           onPressed: _handleCancel,
                           child: Text(
                             widget.cancelText,
@@ -7017,7 +7017,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                         removeTop: true,
                         removeBottom: true,
                         context: context,
-                        TextButton(
+                        child: TextButton(
                           onPressed: _handleOk,
                           child: Text(
                             widget.confirmText,
