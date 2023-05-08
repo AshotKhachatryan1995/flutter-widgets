@@ -6989,17 +6989,13 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
               spacing: 8,
               children: <Widget>[
                 Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(136, 218, 223, 1.0),
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
                   child: TextButton(
                       onPressed: _handleCancel,
                       style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           minimumSize: Size(50, 30),
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          alignment: Alignment.centerLeft),
+                          alignment: Alignment.center),
                       child: Text(
                         widget.cancelText,
                         style: TextStyle(
@@ -7020,7 +7016,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                           padding: EdgeInsets.zero,
                           minimumSize: Size(50, 30),
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          alignment: Alignment.centerLeft),
+                          alignment: Alignment.center),
                       child: Text(
                         widget.confirmText,
                         style: TextStyle(
