@@ -8138,20 +8138,13 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
 
   Container _getLeftArrow(double arrowWidth, Color arrowColor,
       Color prevArrowColor, double arrowSize) {
-    return Container(
-      alignment: Alignment.center,
-      color: widget.headerStyle.backgroundColor ??
-          widget.datePickerTheme.headerBackgroundColor,
-      width: arrowWidth,
-      padding: EdgeInsets.zero,
-      child: Icon(
-        widget.navigationDirection ==
-                DateRangePickerNavigationDirection.horizontal
-            ? Icons.keyboard_double_arrow_left
-            : Icons.keyboard_arrow_up,
-        color: Colors.black,
-        size: arrowSize,
-      ),
+    return Icon(
+      widget.navigationDirection ==
+              DateRangePickerNavigationDirection.horizontal
+          ? Icons.keyboard_double_arrow_left
+          : Icons.keyboard_arrow_up,
+      color: Colors.black,
+      size: arrowSize,
     );
   }
 
