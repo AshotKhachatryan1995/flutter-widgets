@@ -6988,20 +6988,37 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
             child: OverflowBar(
               spacing: 8,
               children: <Widget>[
-                TextButton(
-                  onPressed: _handleCancel,
-                  child: Text(
-                    widget.cancelText,
-                    style: TextStyle(color: textColor),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(136, 218, 223, 1.0),
+                    borderRadius: BorderRadius.circular(2.0),
                   ),
+                  child: TextButton(
+                      onPressed: _handleCancel,
+                      child: Text(
+                        widget.cancelText,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromRGBO(38, 49, 96, 1.0),
+                        ),
+                      )),
                 ),
-                TextButton(
-                  onPressed: _handleOk,
-                  child: Text(
-                    widget.confirmText,
-                    style: TextStyle(color: textColor),
-                  ),
-                ),
+                Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(136, 218, 223, 1.0),
+                      borderRadius: BorderRadius.circular(2.0),
+                    ),
+                    child: TextButton(
+                      onPressed: _handleOk,
+                      child: Text(
+                        widget.confirmText,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromRGBO(38, 49, 96, 1.0)),
+                      ),
+                    )),
               ],
             ),
           )
