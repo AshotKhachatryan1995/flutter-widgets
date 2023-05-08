@@ -8164,7 +8164,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
                     DateRangePickerNavigationDirection.horizontal
                 ? Icons.keyboard_double_arrow_left
                 : Icons.keyboard_arrow_up,
-            color: prevArrowColor,
+            color: Colors.black,
             size: arrowSize,
           ),
         ),
@@ -8202,7 +8202,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
                     DateRangePickerNavigationDirection.horizontal
                 ? Icons.keyboard_double_arrow_right
                 : Icons.keyboard_arrow_down,
-            color: nextArrowColor,
+            color: Colors.black,
             size: arrowSize,
           ),
         ),
