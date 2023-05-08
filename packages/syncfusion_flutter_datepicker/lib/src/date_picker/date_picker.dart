@@ -8136,7 +8136,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
         )));
   }
 
-  Container _getLeftArrow(double arrowWidth, Color arrowColor,
+  Widget _getLeftArrow(double arrowWidth, Color arrowColor,
       Color prevArrowColor, double arrowSize) {
     return Icon(
       widget.navigationDirection ==
