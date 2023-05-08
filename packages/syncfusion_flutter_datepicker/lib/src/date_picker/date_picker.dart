@@ -6964,7 +6964,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
           ),
         ),
       ),
-      Positioned(top: top + height, left: 0, right: 0, child: Divider()),
+      Positioned(top: top + height - 10, left: 0, right: 0, child: Divider()),
+      const SizedBox(height: 5),
       _getActionsButton(top + height, actionButtonsHeight)
     ]);
   }
@@ -8143,31 +8144,13 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
           widget.datePickerTheme.headerBackgroundColor,
       width: arrowWidth,
       padding: EdgeInsets.zero,
-      child: MaterialButton(
-        //// set splash color as transparent when arrow reaches min date(disabled)
-        splashColor: prevArrowColor != arrowColor ? Colors.transparent : null,
-        hoverColor: prevArrowColor != arrowColor ? Colors.transparent : null,
-        highlightColor:
-            prevArrowColor != arrowColor ? Colors.transparent : null,
+      child: Icon(
+        widget.navigationDirection ==
+                DateRangePickerNavigationDirection.horizontal
+            ? Icons.keyboard_double_arrow_left
+            : Icons.keyboard_arrow_up,
         color: Colors.black,
-        onPressed: widget.previousNavigationCallback,
-        padding: EdgeInsets.zero,
-        elevation: 0,
-        focusElevation: 0,
-        highlightElevation: 0,
-        disabledElevation: 0,
-        hoverElevation: 0,
-        child: Semantics(
-          label: 'Backward',
-          child: Icon(
-            widget.navigationDirection ==
-                    DateRangePickerNavigationDirection.horizontal
-                ? Icons.keyboard_double_arrow_left
-                : Icons.keyboard_arrow_up,
-            color: Colors.black,
-            size: arrowSize,
-          ),
-        ),
+        size: arrowSize,
       ),
     );
   }
