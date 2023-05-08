@@ -6964,7 +6964,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
           ),
         ),
       ),
-      Divider(),
+      Positioned(top: top + height / 2, left: 0, right: 0, child: Divider()),
       _getActionsButton(top + height, actionButtonsHeight)
     ]);
   }
