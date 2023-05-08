@@ -6983,8 +6983,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
     final Widget actionButtons = widget.showActionButtons
         ? Container(
             alignment: AlignmentDirectional.centerEnd,
-            constraints: const BoxConstraints(minHeight: 52.0),
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            // constraints: const BoxConstraints(minHeight: 52.0),
+            // padding: const EdgeInsets.symmetric(horizontal: 8),
             child: OverflowBar(
               spacing: 8,
               children: <Widget>[
