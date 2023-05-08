@@ -6993,32 +6993,40 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                     color: Color.fromRGBO(136, 218, 223, 1.0),
                     borderRadius: BorderRadius.circular(2.0),
                   ),
-                  child: TextButton(
-                      onPressed: _handleCancel,
-                      child: Text(
-                        widget.cancelText,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromRGBO(38, 49, 96, 1.0),
-                        ),
-                      )),
+                  child: MediaQuery.removePadding(
+                      removeTop: true,
+                      removeBottom: true,
+                      context: context,
+                      TextButton(
+                          onPressed: _handleCancel,
+                          child: Text(
+                            widget.cancelText,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromRGBO(38, 49, 96, 1.0),
+                            ),
+                          ))),
                 ),
                 Container(
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(136, 218, 223, 1.0),
                       borderRadius: BorderRadius.circular(2.0),
                     ),
-                    child: TextButton(
-                      onPressed: _handleOk,
-                      child: Text(
-                        widget.confirmText,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(38, 49, 96, 1.0)),
-                      ),
-                    )),
+                    child: MediaQuery.removePadding(
+                        removeTop: true,
+                        removeBottom: true,
+                        context: context,
+                        TextButton(
+                          onPressed: _handleOk,
+                          child: Text(
+                            widget.confirmText,
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Color.fromRGBO(38, 49, 96, 1.0)),
+                          ),
+                        ))),
               ],
             ),
           )
@@ -7026,7 +7034,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
     final Widget todayButton = widget.showTodayButton
         ? Container(
             alignment: AlignmentDirectional.centerStart,
-            constraints: const BoxConstraints(minHeight: 40.0),
+            constraints: const BoxConstraints(minHeight: 52.0),
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: OverflowBar(
               spacing: 8,
