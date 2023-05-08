@@ -8043,23 +8043,9 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
       return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(
-              widget.navigationDirection ==
-                      DateRangePickerNavigationDirection.horizontal
-                  ? Icons.keyboard_double_arrow_left
-                  : Icons.keyboard_arrow_up,
-              color: Colors.black,
-              size: 15,
-            ),
+            leftArrow,
             headerText,
-            Icon(
-              widget.navigationDirection ==
-                      DateRangePickerNavigationDirection.horizontal
-                  ? Icons.keyboard_double_arrow_right
-                  : Icons.keyboard_arrow_up,
-              color: Colors.black,
-              size: 15,
-            ),
+            rightArrow,
           ]);
     }
   }
@@ -8153,13 +8139,37 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
   Container _getLeftArrow(double arrowWidth, Color arrowColor,
       Color prevArrowColor, double arrowSize) {
     return Container(
-      child: Icon(
-        widget.navigationDirection ==
-                DateRangePickerNavigationDirection.horizontal
-            ? Icons.keyboard_double_arrow_left
-            : Icons.keyboard_arrow_up,
-        color: Colors.black,
-        size: 15,
+      alignment: Alignment.center,
+      color: widget.headerStyle.backgroundColor ??
+          widget.datePickerTheme.headerBackgroundColor,
+      width: arrowWidth,
+      padding: EdgeInsets.zero,
+      child: MaterialButton(
+        //// set splash color as transparent when arrow reaches min date(disabled)
+        splashColor: prevArrowColor != arrowColor ? Colors.transparent : null,
+        hoverColor: prevArrowColor != arrowColor ? Colors.transparent : null,
+        highlightColor:
+            prevArrowColor != arrowColor ? Colors.transparent : null,
+        color: widget.headerStyle.backgroundColor ??
+            widget.datePickerTheme.headerBackgroundColor,
+        onPressed: widget.previousNavigationCallback,
+        padding: EdgeInsets.zero,
+        elevation: 0,
+        focusElevation: 0,
+        highlightElevation: 0,
+        disabledElevation: 0,
+        hoverElevation: 0,
+        child: Semantics(
+          label: 'Backward',
+          child: Icon(
+            widget.navigationDirection ==
+                    DateRangePickerNavigationDirection.horizontal
+                ? Icons.keyboard_double_arrow_left
+                : Icons.keyboard_arrow_up,
+            color: Colors.black,
+            size: arrowSize,
+          ),
+        ),
       ),
     );
   }
