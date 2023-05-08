@@ -8145,7 +8145,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
             ? Icons.keyboard_double_arrow_left
             : Icons.keyboard_arrow_up,
         color: Colors.black,
-        size: arrowSize,
+        size: 15,
       ),
     );
   }
