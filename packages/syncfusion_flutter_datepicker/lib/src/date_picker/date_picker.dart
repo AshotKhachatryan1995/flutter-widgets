@@ -7026,7 +7026,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
     final Widget todayButton = widget.showTodayButton
         ? Container(
             alignment: AlignmentDirectional.centerStart,
-            constraints: const BoxConstraints(minHeight: 52.0),
+            constraints: const BoxConstraints(minHeight: 40.0),
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: OverflowBar(
               spacing: 8,
