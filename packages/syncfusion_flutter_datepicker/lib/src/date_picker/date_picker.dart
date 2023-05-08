@@ -6993,40 +6993,42 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                     color: Color.fromRGBO(136, 218, 223, 1.0),
                     borderRadius: BorderRadius.circular(2.0),
                   ),
-                  child: MediaQuery.removePadding(
-                      removeTop: true,
-                      removeBottom: true,
-                      context: context,
-                      child: TextButton(
-                          onPressed: _handleCancel,
-                          child: Text(
-                            widget.cancelText,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Color.fromRGBO(38, 49, 96, 1.0),
-                            ),
-                          ))),
+                  child: TextButton(
+                      onPressed: _handleCancel,
+                      style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: Size(50, 30),
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          alignment: Alignment.centerLeft),
+                      child: Text(
+                        widget.cancelText,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromRGBO(38, 49, 96, 1.0),
+                        ),
+                      )),
                 ),
                 Container(
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(136, 218, 223, 1.0),
                       borderRadius: BorderRadius.circular(2.0),
                     ),
-                    child: MediaQuery.removePadding(
-                        removeTop: true,
-                        removeBottom: true,
-                        context: context,
-                        child: TextButton(
-                          onPressed: _handleOk,
-                          child: Text(
-                            widget.confirmText,
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromRGBO(38, 49, 96, 1.0)),
-                          ),
-                        ))),
+                    child: TextButton(
+                      onPressed: _handleOk,
+                      style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: Size(50, 30),
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          alignment: Alignment.centerLeft),
+                      child: Text(
+                        widget.confirmText,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromRGBO(38, 49, 96, 1.0)),
+                      ),
+                    )),
               ],
             ),
           )
