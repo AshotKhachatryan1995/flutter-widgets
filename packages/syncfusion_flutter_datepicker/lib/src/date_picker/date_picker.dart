@@ -8043,9 +8043,23 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
       return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            leftArrow,
+            Icon(
+              widget.navigationDirection ==
+                      DateRangePickerNavigationDirection.horizontal
+                  ? Icons.keyboard_double_arrow_left
+                  : Icons.keyboard_arrow_up,
+              color: Colors.black,
+              size: 15,
+            ),
             headerText,
-            rightArrow,
+            Icon(
+              widget.navigationDirection ==
+                      DateRangePickerNavigationDirection.horizontal
+                  ? Icons.keyboard_double_arrow_right
+                  : Icons.keyboard_arrow_up,
+              color: Colors.black,
+              size: 15,
+            ),
           ]);
     }
   }
