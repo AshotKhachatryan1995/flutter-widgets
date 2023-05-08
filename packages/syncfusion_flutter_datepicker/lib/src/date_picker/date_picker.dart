@@ -8162,7 +8162,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
           child: Icon(
             widget.navigationDirection ==
                     DateRangePickerNavigationDirection.horizontal
-                ? Icons.chevron_left
+                ? Icons.keyboard_double_arrow_left
                 : Icons.keyboard_arrow_up,
             color: prevArrowColor,
             size: arrowSize,
@@ -8200,7 +8200,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
           child: Icon(
             widget.navigationDirection ==
                     DateRangePickerNavigationDirection.horizontal
-                ? Icons.chevron_right
+                ? Icons.keyboard_double_arrow_right
                 : Icons.keyboard_arrow_down,
             color: nextArrowColor,
             size: arrowSize,
