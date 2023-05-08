@@ -8136,15 +8136,17 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
         )));
   }
 
-  Widget _getLeftArrow(double arrowWidth, Color arrowColor,
+  Container _getLeftArrow(double arrowWidth, Color arrowColor,
       Color prevArrowColor, double arrowSize) {
-    return Icon(
-      widget.navigationDirection ==
-              DateRangePickerNavigationDirection.horizontal
-          ? Icons.keyboard_double_arrow_left
-          : Icons.keyboard_arrow_up,
-      color: Colors.black,
-      size: arrowSize,
+    return Container(
+      child: Icon(
+        widget.navigationDirection ==
+                DateRangePickerNavigationDirection.horizontal
+            ? Icons.keyboard_double_arrow_left
+            : Icons.keyboard_arrow_up,
+        color: Colors.black,
+        size: arrowSize,
+      ),
     );
   }
 
