@@ -244,6 +244,8 @@ class SfDateRangePicker extends StatelessWidget {
       this.cellBuilder,
       this.showTodayButton = false,
       this.selectableDayPredicate,
+      this.customChild,
+      this.customChildHeight,
       this.extendableRangeSelectionDirection =
           ExtendableRangeSelectionDirection.both})
       : assert(headerHeight >= -1),
@@ -519,6 +521,9 @@ class SfDateRangePicker extends StatelessWidget {
   ///
   /// ```
   final Color? todayHighlightColor;
+
+  final Widget? customChild;
+  final double? customChildHeight;
 
   /// The color to fill the background of the [SfDateRangePicker].
   ///
@@ -2656,6 +2661,8 @@ class SfDateRangePicker extends StatelessWidget {
       showTodayButton: showTodayButton,
       selectableDayPredicate: selectableDayPredicate,
       extendableRangeSelectionDirection: extendableRangeSelectionDirection,
+      customChild: customChild,
+      customChildHeight: customChildHeight,
     );
   }
 
@@ -5433,6 +5440,8 @@ class _SfDateRangePicker extends StatefulWidget {
       this.cellBuilder,
       this.showTodayButton = false,
       this.selectableDayPredicate,
+      this.customChild,
+      this.customChildHeight,
       this.extendableRangeSelectionDirection =
           ExtendableRangeSelectionDirection.both})
       : super(key: key);
@@ -5526,6 +5535,10 @@ class _SfDateRangePicker extends StatefulWidget {
   final bool showTodayButton;
 
   final dynamic selectableDayPredicate;
+
+  final Widget? customChild;
+
+  final double? customChildHeight;
 
   final ExtendableRangeSelectionDirection extendableRangeSelectionDirection;
 
@@ -5856,7 +5869,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
 
       return Container(
         width: _minWidth,
-        height: _minHeight,
+        height: (_minHeight ?? 0.0) + (widget.customChildHeight ?? 0.0),
         color: widget.backgroundColor ?? _datePickerTheme.backgroundColor,
         child: widget.navigationMode == DateRangePickerNavigationMode.scroll
             ? _addScrollView(_minWidth!, _minHeight!, actionButtonsHeight)
@@ -6964,8 +6977,6 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
           ),
         ),
       ),
-      Positioned(top: top + height - 10, left: 0, right: 0, child: Divider()),
-      const SizedBox(height: 5),
       _getActionsButton(top + height, actionButtonsHeight)
     ]);
   }
@@ -7060,14 +7071,20 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
           )
         : const SizedBox(width: 0, height: 0);
     return Positioned(
-      top: top,
-      left: 0,
-      right: 0,
-      height: actionButtonsHeight,
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[todayButton, actionButtons]),
-    );
+        top: top - 20,
+        left: 0,
+        right: 0,
+        height: actionButtonsHeight + (widget.customChildHeight ?? 0.0) * 2,
+        child: Column(
+          children: [
+            SizedBox(
+                height: widget.customChildHeight, child: widget.customChild),
+            Container(child: const Divider()),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[todayButton, actionButtons]),
+          ],
+        ));
   }
 
   void _handleCancel() {
@@ -8922,7 +8939,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
         Positioned(
           left: leftPosition,
           right: rightPosition,
-          bottom: bottomPosition,
+          bottom: bottomPosition + 20,
           top: topPosition,
           child: GestureDetector(
             onHorizontalDragStart: widget.picker.navigationDirection ==
@@ -8974,7 +8991,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
                   _currentChildIndex),
             ),
           ),
-        )
+        ),
       ],
     );
   }
