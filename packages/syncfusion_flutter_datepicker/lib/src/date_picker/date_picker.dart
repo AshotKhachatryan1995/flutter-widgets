@@ -7077,6 +7077,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
         height: actionButtonsHeight + (widget.customChildHeight ?? 0.0) * 2,
         child: Column(
           children: [
+            if (widget.customChild != null) Divider(),
             SizedBox(
                 height: widget.customChildHeight, child: widget.customChild),
             Container(child: const Divider()),
