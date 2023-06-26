@@ -5885,7 +5885,10 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
 
       return Container(
         width: _minWidth,
-        height: (_minHeight ?? 0.0) + (widget.customChildHeight ?? 0.0),
+        height: (widget.displayType == DisplayType.time
+                ? (widget.customChildHeight ?? 0.0)
+                : (_minHeight ?? 0.0)) +
+            (widget.customChildHeight ?? 0.0),
         color: widget.backgroundColor ?? _datePickerTheme.backgroundColor,
         child: widget.displayType == DisplayType.time
             ? Stack(
