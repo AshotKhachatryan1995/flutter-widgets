@@ -200,6 +200,7 @@ class SfDateRangePicker extends StatelessWidget {
   /// callback with the current view and the current view visible dates.
   SfDateRangePicker(
       {Key? key,
+      this.displayType = DisplayType.date,
       DateRangePickerView view = DateRangePickerView.month,
       this.selectionMode = DateRangePickerSelectionMode.single,
       this.headerHeight = 40,
@@ -312,6 +313,9 @@ class SfDateRangePicker extends StatelessWidget {
   ///
   /// ```
   final DateRangePickerView view;
+
+  ///
+  final DisplayType displayType;
 
   /// Defines the selection mode for [SfDateRangePicker].
   ///
@@ -522,7 +526,10 @@ class SfDateRangePicker extends StatelessWidget {
   /// ```
   final Color? todayHighlightColor;
 
+  ///
   final Widget? customChild;
+
+  ///
   final double? customChildHeight;
 
   /// The color to fill the background of the [SfDateRangePicker].
@@ -2617,6 +2624,7 @@ class SfDateRangePicker extends StatelessWidget {
     return _SfDateRangePicker(
       key: key,
       view: view,
+      displayType: displayType,
       selectionMode: selectionMode,
       headerHeight: headerHeight,
       todayHighlightColor: todayHighlightColor,
@@ -2857,6 +2865,7 @@ class SfHijriDateRangePicker extends StatelessWidget {
   /// callback with the current view and the current view visible dates.
   SfHijriDateRangePicker({
     Key? key,
+    required this.displayType,
     HijriDatePickerView view = HijriDatePickerView.month,
     this.selectionMode = DateRangePickerSelectionMode.single,
     this.headerHeight = 40,
@@ -4901,6 +4910,9 @@ class SfHijriDateRangePicker extends StatelessWidget {
   /// ```
   final String? monthFormat;
 
+  /// Display type for showing calendar or/and time picker
+  final DisplayType displayType;
+
   /// Defines the view navigation mode based on its [navigationDirection]
   /// for [SfHijriDateRangePicker].
   ///
@@ -5258,6 +5270,7 @@ class SfHijriDateRangePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return _SfDateRangePicker(
       key: key,
+      displayType: displayType,
       view: DateRangePickerHelper.getPickerView(view),
       selectionMode: selectionMode,
       headerHeight: headerHeight,
@@ -5395,6 +5408,7 @@ class SfHijriDateRangePicker extends StatelessWidget {
 class _SfDateRangePicker extends StatefulWidget {
   const _SfDateRangePicker(
       {Key? key,
+      required this.displayType,
       required this.view,
       required this.selectionMode,
       this.isHijri = false,
@@ -5447,6 +5461,8 @@ class _SfDateRangePicker extends StatefulWidget {
       : super(key: key);
 
   final DateRangePickerView view;
+
+  final DisplayType displayType;
 
   final DateRangePickerSelectionMode selectionMode;
 
@@ -5871,9 +5887,12 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
         width: _minWidth,
         height: (_minHeight ?? 0.0) + (widget.customChildHeight ?? 0.0),
         color: widget.backgroundColor ?? _datePickerTheme.backgroundColor,
-        child: widget.navigationMode == DateRangePickerNavigationMode.scroll
-            ? _addScrollView(_minWidth!, _minHeight!, actionButtonsHeight)
-            : _addChildren(top, height, _minWidth!, actionButtonsHeight),
+        child: widget.displayType == DisplayType.time
+            ? Stack(
+                children: <Widget>[_getActionsButton(top, actionButtonsHeight)])
+            : widget.navigationMode == DateRangePickerNavigationMode.scroll
+                ? _addScrollView(_minWidth!, _minHeight!, actionButtonsHeight)
+                : _addChildren(top, height, _minWidth!, actionButtonsHeight),
       );
     });
   }
@@ -7076,11 +7095,13 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
         right: 0,
         height: actionButtonsHeight + (widget.customChildHeight ?? 0.0) * 2,
         child: Column(
-          children: [
-            if (widget.customChild != null) Divider(),
+          children: <Widget>[
+            if (widget.customChild != null &&
+                widget.displayType == DisplayType.dateTime)
+              const Divider(),
             SizedBox(
                 height: widget.customChildHeight, child: widget.customChild),
-            Container(child: const Divider()),
+            const Divider(),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[todayButton, actionButtons]),
@@ -7636,7 +7657,7 @@ class _StickyHeader extends Stack {
   @override
   RenderStack createRenderObject(BuildContext context) =>
       _StickyHeaderRenderObject(
-        scrollableState: Scrollable.of(context)!,
+        scrollableState: Scrollable.of(context),
         alignment: alignment,
         textDirection: textDirection ?? Directionality.of(context),
         fit: fit,
@@ -7651,7 +7672,7 @@ class _StickyHeader extends Stack {
 
     if (renderObject is _StickyHeaderRenderObject) {
       renderObject
-        ..scrollableState = Scrollable.of(context)!
+        ..scrollableState = Scrollable.of(context)
         ..isRTL = isRTL
         ..isHorizontal = isHorizontal;
     }
@@ -7705,7 +7726,7 @@ class _StickyHeaderRenderObject extends RenderStack {
   }
 
   /// Current view port.
-  RenderAbstractViewport get _stackViewPort => RenderAbstractViewport.of(this)!;
+  RenderAbstractViewport get _stackViewPort => RenderAbstractViewport.of(this);
 
   ScrollableState get scrollableState => _scrollableState;
 
@@ -8960,24 +8981,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
                     widget.picker.navigationMode !=
                         DateRangePickerNavigationMode.none
                 ? _onHorizontalEnd
-                : null,
-            onVerticalDragStart: widget.picker.navigationDirection ==
-                        DateRangePickerNavigationDirection.vertical &&
-                    widget.picker.navigationMode !=
-                        DateRangePickerNavigationMode.none
-                ? _onVerticalStart
-                : null,
-            onVerticalDragUpdate: widget.picker.navigationDirection ==
-                        DateRangePickerNavigationDirection.vertical &&
-                    widget.picker.navigationMode !=
-                        DateRangePickerNavigationMode.none
-                ? _onVerticalUpdate
-                : null,
-            onVerticalDragEnd: widget.picker.navigationDirection ==
-                        DateRangePickerNavigationDirection.vertical &&
-                    widget.picker.navigationMode !=
-                        DateRangePickerNavigationMode.none
-                ? _onVerticalEnd
                 : null,
             child: FocusScope(
               node: _focusNode,
@@ -11238,9 +11241,7 @@ class _PickerViewState extends State<_PickerView>
           return GestureDetector(
             onTapUp: _updateTapCallback,
             onHorizontalDragStart: _getDragStartCallback(),
-            onVerticalDragStart: _getDragStartCallback(),
             onHorizontalDragUpdate: _getDragUpdateCallback(),
-            onVerticalDragUpdate: _getDragUpdateCallback(),
             child: MouseRegion(
                 onEnter: _pointerEnterEvent,
                 onHover: _pointerHoverEvent,
@@ -11260,9 +11261,7 @@ class _PickerViewState extends State<_PickerView>
           return GestureDetector(
             onTapUp: _updateTapCallback,
             onHorizontalDragStart: _getDragStartCallback(),
-            onVerticalDragStart: _getDragStartCallback(),
             onHorizontalDragUpdate: _getDragUpdateCallback(),
-            onVerticalDragUpdate: _getDragUpdateCallback(),
             child: MouseRegion(
               onEnter: _pointerEnterEvent,
               onHover: _pointerHoverEvent,
