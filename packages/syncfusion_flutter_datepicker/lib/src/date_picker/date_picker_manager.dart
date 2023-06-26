@@ -4014,7 +4014,7 @@ enum DisplayType {
   /// - DateRangePickerView.date, Displays the date calendar.
   date,
 
-  /// - DateRangePickerView.dateTime, Displays the date calendar and time picker.
+  /// - DateRangePickerView.dateTime, Displays the date calendar and time picker
   dateTime,
 
   /// - DateRangePickerView.decade, Displays the time picker.
