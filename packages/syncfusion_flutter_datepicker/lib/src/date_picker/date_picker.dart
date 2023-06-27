@@ -5891,7 +5891,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                 : (_minHeight ?? 0.0)) +
             (widget.customChildHeight ?? 0.0),
         color: widget.backgroundColor ?? _datePickerTheme.backgroundColor,
-        child: widget.displayType == DisplayType.time || widget.displayType == DisplayType.month
+        child: widget.displayType == DisplayType.time ||
+                widget.displayType == DisplayType.month
             ? Stack(
                 children: <Widget>[_getActionsButton(top, actionButtonsHeight)])
             : widget.navigationMode == DateRangePickerNavigationMode.scroll
@@ -7099,8 +7100,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
         child: Column(
           children: <Widget>[
             if (widget.customChild != null &&
-                (widget.displayType == DisplayType.dateTime ||
-                    widget.displayType == DisplayType.month))
+                widget.displayType == DisplayType.dateTime)
               const Divider(),
             SizedBox(
                 height: widget.customChildHeight, child: widget.customChild),
