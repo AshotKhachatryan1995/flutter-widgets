@@ -5866,11 +5866,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
           : constraints.maxHeight;
 
       final double actionButtonsHeight =
-          (widget.showActionButtons || widget.showTodayButton)
-              ? _minHeight! * 0.1 < 50
-                  ? 50
-                  : _minHeight! * 0.1
-              : 0;
+          _minHeight! * 0.1 < 50 ? 50 : _minHeight! * 0.1;
       _handleScrollViewSizeChanged(_minHeight!, _minWidth!, previousHeight,
           previousWidth, actionButtonsHeight);
 
