@@ -7006,9 +7006,9 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
   }
 
   Widget _getActionsButton(double top, double actionButtonsHeight) {
-    if (!widget.showActionButtons && !widget.showTodayButton) {
-      return const SizedBox(width: 0, height: 0);
-    }
+    // if (!widget.showActionButtons && !widget.showTodayButton) {
+    //   return const SizedBox(width: 0, height: 0);
+    // }
     Color textColor =
         widget.todayHighlightColor ?? _datePickerTheme.todayHighlightColor!;
     if (textColor == Colors.transparent) {
@@ -7105,9 +7105,10 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
             SizedBox(
                 height: widget.customChildHeight, child: widget.customChild),
             const Divider(),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[todayButton, actionButtons]),
+            if (widget.showActionButtons)
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[todayButton, actionButtons]),
           ],
         ));
   }
