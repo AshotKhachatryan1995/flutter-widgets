@@ -214,6 +214,7 @@ class SfDateRangePicker extends StatelessWidget {
       this.enablePastDates = true,
       this.showNavigationArrow = false,
       this.confirmText = 'OK',
+      this.isActiveConfirmBtn = true,
       this.cancelText = 'CANCEL',
       this.showActionButtons = false,
       this.selectionShape = DateRangePickerSelectionShape.circle,
@@ -2461,6 +2462,9 @@ class SfDateRangePicker extends StatelessWidget {
   /// ```
   final String confirmText;
 
+  /// Active or inactive state for confirm
+  final bool isActiveConfirmBtn;
+
   /// Text that displays on the cancel button.
   ///
   /// See also:
@@ -2664,6 +2668,7 @@ class SfDateRangePicker extends StatelessWidget {
       cellBuilder: cellBuilder,
       navigationMode: navigationMode,
       confirmText: confirmText,
+      isActiveConfirmBtn: isActiveConfirmBtn,
       cancelText: cancelText,
       showActionButtons: showActionButtons,
       showTodayButton: showTodayButton,
@@ -2879,6 +2884,7 @@ class SfHijriDateRangePicker extends StatelessWidget {
     this.enablePastDates = true,
     this.showNavigationArrow = false,
     this.confirmText = 'OK',
+    this.isActiveConfirmBtn = true,
     this.cancelText = 'CANCEL',
     this.showActionButtons = false,
     this.selectionShape = DateRangePickerSelectionShape.circle,
@@ -5108,6 +5114,9 @@ class SfHijriDateRangePicker extends StatelessWidget {
   /// ```
   final String confirmText;
 
+  ///   Status active or inactive for btn
+  final bool isActiveConfirmBtn;
+
   /// Text that displays on the cancel button.
   ///
   /// See also:
@@ -5311,6 +5320,7 @@ class SfHijriDateRangePicker extends StatelessWidget {
       cellBuilder: cellBuilder,
       navigationMode: navigationMode,
       confirmText: confirmText,
+      isActiveConfirmBtn: isActiveConfirmBtn,
       cancelText: cancelText,
       showActionButtons: showActionButtons,
       isHijri: true,
@@ -5434,6 +5444,7 @@ class _SfDateRangePicker extends StatefulWidget {
       required this.monthViewSettings,
       required this.initialDisplayDate,
       this.confirmText = 'OK',
+      this.isActiveConfirmBtn = true,
       this.cancelText = 'CANCEL',
       this.showActionButtons = false,
       required this.minDate,
@@ -5473,6 +5484,8 @@ class _SfDateRangePicker extends StatefulWidget {
   final double headerHeight;
 
   final String confirmText;
+
+  final bool isActiveConfirmBtn;
 
   final String cancelText;
 
@@ -7038,7 +7051,9 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                     )),
                 Container(
                     decoration: BoxDecoration(
-                      color: const Color.fromRGBO(136, 218, 223, 1.0),
+                      color: widget.isActiveConfirmBtn
+                          ? const Color.fromRGBO(136, 218, 223, 1.0)
+                          : const Color.fromRGBO(136, 218, 223, 0.4),
                       borderRadius: BorderRadius.circular(2.0),
                     ),
                     child: TextButton(
@@ -7050,10 +7065,12 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                           alignment: Alignment.center),
                       child: Text(
                         widget.confirmText,
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(38, 49, 96, 1.0)),
+                            color: widget.isActiveConfirmBtn
+                                ? const Color.fromRGBO(38, 49, 96, 1.0)
+                                : const Color.fromRGBO(38, 49, 96, 0.4)),
                       ),
                     )),
               ],
@@ -7171,6 +7188,10 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
   }
 
   void _handleOk() {
+    if (!widget.isActiveConfirmBtn) {
+      return;
+    }
+
     dynamic value;
     switch (widget.selectionMode) {
       case DateRangePickerSelectionMode.single:
