@@ -4163,7 +4163,7 @@ class DateRangePickerSelectionChangedArgs {
   /// when the widget [DateRangePickerSelectionMode] set as range.
   ///
   /// The argument value will return the changed ranges as
-  /// [List<PickerDateRange] when the widget [DateRangePickerSelectionMode] set
+  /// [List<PickerDateRange>] when the widget [DateRangePickerSelectionMode] set
   /// as multi range.
   final dynamic value;
 }
