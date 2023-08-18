@@ -7062,34 +7062,38 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
         ),
       ),
       _getViewHeaderView(widget.headerHeight),
-      Positioned(
-        top: top,
-        left: 0,
-        right: 0,
-        height: height,
-        child: _AnimatedOpacityWidget(
-          opacity: _opacity,
-          child: _PickerScrollView(
-            widget,
-            _controller,
-            width,
-            height,
-            _isRtl,
-            _datePickerTheme,
-            _locale,
-            _textScaleFactor,
-            getPickerStateValues: (PickerStateArgs details) {
-              _getPickerStateValues(details);
-            },
-            updatePickerStateValues: (PickerStateArgs details) {
-              _updatePickerStateValues(details);
-            },
-            key: _scrollViewKey,
-          ),
-        ),
-      ),
+      _renderMainView(top, height, width),
       _getActionsButton(top + height, actionButtonsHeight)
     ]);
+  }
+
+  Widget _renderMainView(double? top, double height, double width) {
+    return Positioned(
+      top: top,
+      left: 0,
+      right: 0,
+      height: height,
+      child: _AnimatedOpacityWidget(
+        opacity: _opacity,
+        child: _PickerScrollView(
+          widget,
+          _controller,
+          width,
+          height,
+          _isRtl,
+          _datePickerTheme,
+          _locale,
+          _textScaleFactor,
+          getPickerStateValues: (PickerStateArgs details) {
+            _getPickerStateValues(details);
+          },
+          updatePickerStateValues: (PickerStateArgs details) {
+            _updatePickerStateValues(details);
+          },
+          key: _scrollViewKey,
+        ),
+      ),
+    );
   }
 
   Widget _getActionsButton(double top, double actionButtonsHeight) {
@@ -8135,8 +8139,8 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
             widget.isHijri)) {
       prevArrowColor = prevArrowColor.withOpacity(arrowColor.opacity * 0.5);
     }
-
     final Widget headerText = _getHeaderText(headerWidth, isMobilePlatform);
+
     if (widget.navigationMode == DateRangePickerNavigationMode.scroll &&
         widget.navigationDirection ==
             DateRangePickerNavigationDirection.horizontal) {
@@ -8433,9 +8437,7 @@ class _PickerHeaderPainter extends CustomPainter {
       final TextSpan span = TextSpan(text: text, style: style);
       _textPainter.text = span;
 
-      if (headerStyle.textAlign == TextAlign.justify) {
-        _textPainter.textAlign = headerStyle.textAlign;
-      }
+      _textPainter.textAlign = headerStyle.textAlign;
 
       double textWidth = ((currentViewIndex + 1) * width) - xPosition;
       textWidth = textWidth > 0 ? textWidth : 0;
@@ -8569,7 +8571,7 @@ class _PickerViewHeaderPainter extends CustomPainter {
   final DateRangePickerNavigationDirection navigationDirection;
   final TextPainter _textPainter = TextPainter(
       textDirection: TextDirection.ltr,
-      textAlign: TextAlign.left,
+      textAlign: TextAlign.center,
       textWidthBasis: TextWidthBasis.longestLine);
 
   final ValueNotifier<List<dynamic>>? viewHeaderVisibleDates;
@@ -11339,6 +11341,7 @@ class _PickerViewState extends State<_PickerView>
                 onHover: _pointerHoverEvent,
                 onExit: _pointerExitEvent,
                 child: SizedBox(
+                  ///TODOODODOO
                   width: widget.width,
                   height: widget.height,
                   child: _addMonthView(

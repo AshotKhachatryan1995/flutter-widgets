@@ -2063,6 +2063,7 @@ abstract class _IYearViewRenderObject extends RenderBox
   final TextPainter _textPainter = TextPainter(
       textDirection: TextDirection.ltr,
       maxLines: 2,
+      textAlign: TextAlign.center,
       textWidthBasis: TextWidthBasis.longestLine);
 
   /// Used to paint the selection of year cell and today highlight on all

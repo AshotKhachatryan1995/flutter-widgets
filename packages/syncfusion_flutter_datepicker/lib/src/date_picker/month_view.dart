@@ -2219,6 +2219,7 @@ abstract class _IMonthView extends RenderBox
   /// Used to draw month cell text in month view.
   final TextPainter _textPainter = TextPainter(
       textDirection: TextDirection.ltr,
+      textAlign: TextAlign.center,
       textWidthBasis: TextWidthBasis.longestLine);
 
   static const int _selectionPadding = 2;
@@ -4549,7 +4550,7 @@ void _drawWeekNumber(
       TextSpan(text: weekNumber, style: weekNumberTextStyle);
 
   monthView._textPainter.text = textSpan;
-  monthView._textPainter.textAlign = TextAlign.left;
+  monthView._textPainter.textAlign = TextAlign.center;
   monthView._textPainter.textDirection = TextDirection.ltr;
   monthView._textPainter.textWidthBasis = TextWidthBasis.longestLine;
   monthView._textPainter.layout(maxWidth: weekNumberPanelWidth);
