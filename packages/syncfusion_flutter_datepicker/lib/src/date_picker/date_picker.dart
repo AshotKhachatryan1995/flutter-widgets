@@ -11412,7 +11412,7 @@ class _PickerViewState extends State<_PickerView>
           left: 0,
           top: viewHeaderHeight,
           right: 0,
-          height: height,
+          height: height / 1.1,
           child: RepaintBoundary(
             child: _monthView,
           ),
