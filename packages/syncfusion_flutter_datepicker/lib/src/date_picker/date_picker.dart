@@ -277,8 +277,8 @@ class SfDateRangePicker extends StatelessWidget {
             controller != null && controller.displayDate != null
                 ? controller.displayDate!
                 : initialDisplayDate ?? DateTime.now(),
-        minDate = minDate ?? DateTime(1900),
-        maxDate = maxDate ?? DateTime(2100, 12, 31),
+        minDate = minDate ?? DateTime(DateTime.now().year - 100),
+        maxDate = maxDate ?? DateTime(DateTime.now().year + 100, 12, 31),
         viewSpacing = enableMultiView ? viewSpacing : 0,
         super(key: key);
 
