@@ -2737,7 +2737,7 @@ class SfDateRangePicker extends StatelessWidget {
         .add(DiagnosticsProperty<bool>('showActionButtons', showActionButtons));
     properties.add(StringProperty('cancelText', cancelText));
     properties.add(StringProperty('confirmText', confirmText));
-    properties.add(StringProperty('confirmColor', confirmColor));
+    properties.add(ColorProperty('confirmColor', confirmColor));
     properties
         .add(DiagnosticsProperty<bool>('enableMultiView', enableMultiView));
     properties.add(DiagnosticsProperty<DateRangePickerViewChangedCallback>(
@@ -5393,7 +5393,7 @@ class SfHijriDateRangePicker extends StatelessWidget {
         .add(DiagnosticsProperty<bool>('showActionButtons', showActionButtons));
     properties.add(StringProperty('cancelText', cancelText));
     properties.add(StringProperty('confirmText', confirmText));
-    properties.add(StringProperty('confirmColor', confirmColor));
+    properties.add(ColorProperty('confirmColor', confirmColor));
     properties
         .add(DiagnosticsProperty<bool>('enableMultiView', enableMultiView));
     properties.add(DiagnosticsProperty<HijriDatePickerViewChangedCallback>(
