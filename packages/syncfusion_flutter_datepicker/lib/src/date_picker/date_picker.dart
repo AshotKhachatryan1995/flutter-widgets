@@ -5498,8 +5498,6 @@ class _SfDateRangePicker extends StatefulWidget {
 
   final Color? confirmColor;
 
-  final Color? confirmColor;
-
   final bool isActiveConfirmBtn;
 
   final String cancelText;
