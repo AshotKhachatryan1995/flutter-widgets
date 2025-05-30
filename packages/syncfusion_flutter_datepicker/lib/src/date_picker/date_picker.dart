@@ -214,6 +214,7 @@ class SfDateRangePicker extends StatelessWidget {
       this.enablePastDates = true,
       this.showNavigationArrow = false,
       this.confirmText = 'OK',
+      this.confirmColor,
       this.isActiveConfirmBtn = true,
       this.cancelText = 'CANCEL',
       this.showActionButtons = false,
@@ -2462,6 +2463,8 @@ class SfDateRangePicker extends StatelessWidget {
   /// ```
   final String confirmText;
 
+  final Color? confirmColor;
+
   /// Active or inactive state for confirm
   final bool isActiveConfirmBtn;
 
@@ -2668,6 +2671,7 @@ class SfDateRangePicker extends StatelessWidget {
       cellBuilder: cellBuilder,
       navigationMode: navigationMode,
       confirmText: confirmText,
+      confirmColor: confirmColor,
       isActiveConfirmBtn: isActiveConfirmBtn,
       cancelText: cancelText,
       showActionButtons: showActionButtons,
@@ -2733,6 +2737,7 @@ class SfDateRangePicker extends StatelessWidget {
         .add(DiagnosticsProperty<bool>('showActionButtons', showActionButtons));
     properties.add(StringProperty('cancelText', cancelText));
     properties.add(StringProperty('confirmText', confirmText));
+    properties.add(StringProperty('confirmColor', confirmColor));
     properties
         .add(DiagnosticsProperty<bool>('enableMultiView', enableMultiView));
     properties.add(DiagnosticsProperty<DateRangePickerViewChangedCallback>(
@@ -2884,6 +2889,7 @@ class SfHijriDateRangePicker extends StatelessWidget {
     this.enablePastDates = true,
     this.showNavigationArrow = false,
     this.confirmText = 'OK',
+    this.confirmColor,
     this.isActiveConfirmBtn = true,
     this.cancelText = 'CANCEL',
     this.showActionButtons = false,
@@ -5114,6 +5120,8 @@ class SfHijriDateRangePicker extends StatelessWidget {
   /// ```
   final String confirmText;
 
+  final Color? confirmColor;
+
   ///   Status active or inactive for btn
   final bool isActiveConfirmBtn;
 
@@ -5320,6 +5328,7 @@ class SfHijriDateRangePicker extends StatelessWidget {
       cellBuilder: cellBuilder,
       navigationMode: navigationMode,
       confirmText: confirmText,
+      confirmColor: confirmColor,
       isActiveConfirmBtn: isActiveConfirmBtn,
       cancelText: cancelText,
       showActionButtons: showActionButtons,
@@ -5384,6 +5393,7 @@ class SfHijriDateRangePicker extends StatelessWidget {
         .add(DiagnosticsProperty<bool>('showActionButtons', showActionButtons));
     properties.add(StringProperty('cancelText', cancelText));
     properties.add(StringProperty('confirmText', confirmText));
+    properties.add(StringProperty('confirmColor', confirmColor));
     properties
         .add(DiagnosticsProperty<bool>('enableMultiView', enableMultiView));
     properties.add(DiagnosticsProperty<HijriDatePickerViewChangedCallback>(
@@ -5444,6 +5454,7 @@ class _SfDateRangePicker extends StatefulWidget {
       required this.monthViewSettings,
       required this.initialDisplayDate,
       this.confirmText = 'OK',
+      this.confirmColor,
       this.isActiveConfirmBtn = true,
       this.cancelText = 'CANCEL',
       this.showActionButtons = false,
@@ -5484,6 +5495,10 @@ class _SfDateRangePicker extends StatefulWidget {
   final double headerHeight;
 
   final String confirmText;
+
+  final Color? confirmColor;
+
+  final Color? confirmColor;
 
   final bool isActiveConfirmBtn;
 
@@ -7148,9 +7163,10 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: widget.isActiveConfirmBtn
-                                ? const Color.fromRGBO(38, 49, 96, 1.0)
-                                : const Color.fromRGBO(38, 49, 96, 0.4)),
+                            color: widget.confirmColor ??
+                                (widget.isActiveConfirmBtn
+                                    ? const Color.fromRGBO(38, 49, 96, 1.0)
+                                    : const Color.fromRGBO(38, 49, 96, 0.4))),
                       ),
                     )),
               ],
